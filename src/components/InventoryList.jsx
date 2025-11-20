@@ -26,7 +26,31 @@ const InventoryList = () => {
 
     }, []);
     return (
-        <div>InventoryList</div>
+        <div className="flex flex-col m-8 w-2/5">
+            {
+                loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>{error}</p>
+                ) : (
+                    <ul className="flex flex-col">
+                        <h2 className="text-3xl my-4">Item list</h2>
+                            {
+                                items.map((item) => (
+                                    <li className="flex flex-col p-2 my-2 bg-gray-200 border rounded-md" key={item.id}>
+                                        <p className="my-2 text-xl">
+                                            <strong>{item.name}</strong> {item.picture} of type <strong>{item.type}</strong> costs <strong>{item.price}</strong> per KG.
+                                        </p>
+                                        <p className="mb-2 text-lg">
+                                            Available in stock: <strong> {item.quantity} </strong>
+                                        </p>
+                                    </li>
+                                ))
+                            }
+                    </ul>
+                )
+             }
+        </div>
     )
 }
 
